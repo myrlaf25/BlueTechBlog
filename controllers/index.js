@@ -6,6 +6,6 @@ const dashboardRoutes=require('./api/dashboardRoutes')
 
 router.use('/', homeRoutes);
 router.use('/api', apiRoutes);
-router.use('/dashboard', postRoutes);
+router.use('/dashboard', dashboardRoutes);
 
 module.exports = router;
