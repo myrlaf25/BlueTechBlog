@@ -2,7 +2,7 @@
     --primary: #ccdad1;
     --secondary: rgb(241, 241, 178);
     --tertiary: rgb(252, 187, 102);
-    --light-dark: rgb(117, 250, 250);
+    --light-dark: rgb(5, 116, 116);
     --dark: rgb(33, 33, 129);
     --border-radius: .3rem;
 }
@@ -32,7 +32,7 @@ h6 {
     line-height: 1.25;
 }
 .link-color {
-    color: var(--tertiary);
+    color: var(--light-dark);
     padding: 5px;
     margin: 10px
 }
@@ -43,7 +43,7 @@ h6 {
     display: flex;
     flex-direction: column;
 }
-.blogTitle {
+.blogTitle .fab {
     font-size: 3rem;
     background-color: var(--primary);
     color: var(--dark);
@@ -56,5 +56,31 @@ h6 {
     padding: 5px;
     line-height: 1.25;
     float: top;
+}
+.card {
+    background-color: var(--tertiary) ;
+}
+
+.card-header {
+    font-weight: 700;
+    margin: 0;
+    color: var(--dark);
+    line-height: 1.25;
+}
+.card-body{
+    color: var(--light-dark);
+}
+.form-label{
+    color: var(--dark);
+}
+.login-form {
+    color: var(--light-dark);
+    margin-left: 50px;
+}
+#signup-form{
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    width: 40%;
 }
 

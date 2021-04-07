@@ -6,10 +6,10 @@ router.get('/', withAuth, async (req, res) => {
     try {
       const userData = await User.findAll({
         attributes: { exclude: ['password'] },
-        order: [['email_username', 'ASC']],
+        order: [['username', 'ASC']],
       });
   
-      const users = userData.map((project) => project.get({ plain: true }));
+      const users = userData.map((post) => post.get({ plain: true }));
   
       res.render('dashboard', {
         users,
@@ -19,6 +19,25 @@ router.get('/', withAuth, async (req, res) => {
       res.status(500).json(err);
     }
   });
+  router.post('/signup', async (req,res)=>{
+    
+    const userData= await User.create(req.body);
+    //add name, email and password to/from model user
+    req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
+        
+        res.json({ 
+            user: {
+                username: userData.get('username'),
+                email: userData.get('email'),
+                password:('password')
+            }, 
+            message: 'You are now logged in!',
+         });
+
+});
+});
 
 router.post('/login', async (req, res) => {
   try {
@@ -61,5 +80,7 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
+
 
 module.exports = router;
