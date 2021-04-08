@@ -21,16 +21,16 @@ router.get('/', withAuth, async (req, res) => {
   });
   router.post('/signup', async (req,res)=>{
     
-    const userData= await User.create(req.body);
+    const newUserData= await User.create(req.body);
     //add name, email and password to/from model user
     req.session.save(() => {
-        req.session.user_id = userData.id;
+        req.session.user_id = newUserData.id;
         req.session.logged_in = true;
         
         res.json({ 
             user: {
-                username: userData.get('username'),
-                email: userData.get('email'),
+                username: newUserData.get('username'),
+                email: newUserData.get('email'),
                 password:('password')
             }, 
             message: 'You are now logged in!',
@@ -41,16 +41,16 @@ router.get('/', withAuth, async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
+    const userDataId = await User.findOne({ where: { email: req.body.email } });
 
-    if (!userData) {
+    if (!userDataId) {
       res
         .status(400)
         .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
-    const validPassword = await userData.checkPassword(req.body.password);
+    const validPassword = await userDataId.checkPassword(req.body.password);
 
     if (!validPassword) {
       res
@@ -60,10 +60,10 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.user_id = userDataId.id;
       req.session.logged_in = true;
       
-      res.json({ user: userData, message: 'You are now logged in!' });
+      res.json({ user: userDataId, message: 'You are now logged in!' });
     });
 
   } catch (err) {
@@ -80,6 +80,14 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+router.put('/:id', async (req, res) => {
+    const updatedUserData = await User.update(req.body, { where: { id: req.params.id } })
+    res.json(updatedUserData)
+  })
+  router.delete('/:id', async (req, res) => {
+    const deletedUser = await User.destroy({ where: { id: req.params.id } })
+    res.json(deletedUser)
+  })
 
 
 

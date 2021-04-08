@@ -14,13 +14,13 @@ router.get('/', withAuth, async (req, res) => {
             include: [
                 {
                     model: Comment, User,
-                    attributes: ['id', 'comment_text', 'user_id', 'created_at', 'name', 'email_username']
+                    attributes: ['id', 'comment_text', 'user_id', 'created_at', 'username', 'email_username']
                 },
             ],
         });
-        const posts = postData.map((posts) => posts.get({ plain: true })
+        const posts = postData.map((post) => post.get({ plain: true })
         ); console.log(posts);
-        res.render('dashboard-postinfo', {
+        res.render('dashboard', {
             posts, logged_in: true
         });
     }
@@ -30,7 +30,7 @@ router.get('/', withAuth, async (req, res) => {
     }
 }
 );
-router.get('/:id', withAuth, async (req, res) => {
+router.get('/edit/:id', withAuth, async (req, res) => {
     try {
         const postId = await Post.findByPk({
             where: {
@@ -52,7 +52,7 @@ router.get('/:id', withAuth, async (req, res) => {
             }
         }
         const post = postId.get({ plain: true });
-        res.render('dashboard/edit/', { post, logged_in: true });
+        res.render('edit-post', { post, logged_in: true });
     }
     catch (err) {
         console.log(err);
@@ -61,8 +61,8 @@ router.get('/:id', withAuth, async (req, res) => {
 }
 );
 
-router.get('new', async (req, res) => {
-    res.render('/new', postData);
+router.get('/new', async (req, res) => {
+    res.render('newPost');
 });
 
 

@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blue Tech Blog</title>
+  <title>MVC-Blue Tech Blog</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -16,7 +16,7 @@
             <nav class="nav">
                     <a class="link-color" href="/">Home</a>
                     <a class="link-color" href="/dashboard">Dashboard</a>
-                    {{#if loggedIn}}
+                    {{#if logged_in}}
                     <a class="link-color" href="/" id="logout">Logout</a>
                     {{else}}
                     <a class="link-color" href="/login">Login</a>
@@ -32,7 +32,7 @@
     </main>
   </div>
 
-    {{#if loggedIn}}
+    {{#if logged_in}}
     <script src="/js/logout.js"></script>
     {{/if}}
 
