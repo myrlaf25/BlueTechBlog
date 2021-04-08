@@ -31,7 +31,7 @@ router.get('/', withAuth, async (req, res) => {
             user: {
                 username: newUserData.get('username'),
                 email: newUserData.get('email'),
-                password:('password')
+                password:newUserData.get('password')
             }, 
             message: 'You are now logged in!',
          });
