@@ -4,7 +4,7 @@ const newPostFormHandler = async (event) => {
     const title = document.querySelector('#post-title').value.trim();
     const content = document.querySelector('#content').value.trim();
   
-    if (email && password) {
+    if (title && content) {
       const response = await fetch('/api/posts', {
         method: 'POST',
         body: JSON.stringify({ title, content }),
@@ -12,7 +12,7 @@ const newPostFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/dashboard');
+        document.location.replace('/dashboard/new');
       } else {
         alert('Failed to create post');
       }
@@ -20,6 +20,8 @@ const newPostFormHandler = async (event) => {
   };
   
   document
-    .querySelector('.new-post-form')
+    .getElementById('#new-post-form')
     .addEventListener('submit', newPostFormHandler);
+  
+  
   

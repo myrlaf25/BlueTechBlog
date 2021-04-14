@@ -6,7 +6,7 @@ const withAuth = require('../../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
     try{
-    const dbPostData= await Post.findAll({
+    const postData= await Post.findAll({
             where: {
                 user_id: req.session.user_id
             },
@@ -30,7 +30,7 @@ router.get('/', withAuth, async (req, res) => {
                 }
             ]
         })
-        const postData= await response.post();
+        const dbPostData= await response.post();
             const posts = dbPostData.map(post => post.get({ plain: true }));
             res.render('dashboard', { posts, loggedIn: true });
         }
@@ -39,7 +39,7 @@ router.get('/', withAuth, async (req, res) => {
             res.status(500).json(err);
 }});
 
-router.get('/edit/:id', withAuth, (req, res) => {
+router.put('/edit/:id', withAuth, (req, res) => {
     Post.findOne({
             where: {
                 id: req.params.id
@@ -63,13 +63,13 @@ router.get('/edit/:id', withAuth, (req, res) => {
                 }
             ]
         })
-        .then(dbPostData => {
-            if (!dbPostData) {
+        .then(postData => {
+            if (!postData) {
                 res.status(404).json({ message: 'No post found with this id' });
                 return;
             }
 
-            const post = dbPostData.get({ plain: true });
+            const post = postData.get({ plain: true });
             res.render('edit-post', { post, loggedIn: true });
         })
         .catch(err => {
@@ -77,9 +77,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
             res.status(500).json(err);
         });
 })
-router.get('/new', (req, res) => {
-    res.render('new-post');
-});
+
 
 
 
