@@ -29,9 +29,6 @@ Comment.init(
     }, 
     },
   
-  
-    
-    
     {
     sequelize,
     timestamps: true,
