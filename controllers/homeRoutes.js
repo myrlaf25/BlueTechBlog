@@ -91,9 +91,9 @@ router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/dashboard');
         return;
-    }
+    }else {
     res.render('signup');
-    
+    }
 });
 
 
