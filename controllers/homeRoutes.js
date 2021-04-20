@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
         res.status(500).json(err);
     }
 });
-router.get('/posts/:id', async (req, res) => {
+router.get('/posts/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
             attributes: ['title', 'content', 'created_at'],
@@ -49,7 +49,7 @@ router.get('/posts/:id', async (req, res) => {
         const post = postData.get({ plain: true });
         res.render('partials/single-post', {
             ...post,
-            logged_in: req.session.logged_in
+            logged_in: true
         })
         
     }
@@ -82,17 +82,18 @@ router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/dashboard');
         return;
-    }
+    }else {
     res.render('login');
+    }
 });
 
 router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/dashboard');
         return;
-    }
+    }else {
     res.render('signup');
-    
+    }
 });
 
 

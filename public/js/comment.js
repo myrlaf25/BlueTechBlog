@@ -20,13 +20,16 @@ async function commentFormHandler(event) {
         });
 
         if (response.ok) {
+            alert('Comment successfully submitted and added to Homepage.')
             document.location.reload();
 
         } else {
             alert(response.statusText);
             document.querySelector('#comment-form').style.display = "block";
         }
-    }
+        
+    } 
+    
 }
 
 document.querySelector('#comment-form').addEventListener('submit', commentFormHandler);

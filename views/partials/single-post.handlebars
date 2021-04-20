@@ -1,7 +1,7 @@
 
 <div class="card">
     <div class="card-header">
-       <h4><a class="link" href="/posts/{{id}}">{{title}}</a></h4>
+       <h4>{{title}}</h4>
         <p>Posted by {{user.username}} on {{format_date created_at}}</p>
     </div>
         <p class="card-body">{{content}}</p>
@@ -12,7 +12,7 @@
 
 
 
-{{#if loggedIn}}
+
 <div class="card">
     <h3 class="card-header"></h3>
     <form class="card-body comment-form" id="comment-form">
@@ -23,12 +23,10 @@
         <button type="submit" class="btn">Submit</button>
     </form>
 </div>
-{{/if}}
+
 
 {{> comments post.comments}}
 </div>
 
 
-{{#if loggedIn}}
 <script src="/js/comment.js"></script>
- {{/if}}
