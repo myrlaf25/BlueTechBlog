@@ -1,5 +1,16 @@
 
-{{> post-info post}}
+<div class="card">
+    <div class="card-header">
+       <h4><a class="link" href="/posts/{{id}}">{{title}}</a></h4>
+        <p>Posted by {{user.username}} on {{format_date created_at}}</p>
+    </div>
+        <p class="card-body">{{content}}</p>
+        
+        
+        
+
+
+
 
 {{#if loggedIn}}
 <div class="card">
@@ -15,7 +26,9 @@
 {{/if}}
 
 {{> comments post.comments}}
+</div>
+
 
 {{#if loggedIn}}
 <script src="/js/comment.js"></script>
-{{/if}}
+ {{/if}}

@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { response } = require('express');
-const sequelize = require('../../config/connection');
-const { Post, User, Comment } = require('../../models');
-const withAuth = require('../../utils/auth');
+const sequelize = require('../config/connection');
+const { Post, User, Comment } = require('../models');
+const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
     try{
@@ -39,7 +39,7 @@ router.get('/', withAuth, async (req, res) => {
             res.status(500).json(err);
 }});
 
-router.put('/edit/:id', withAuth, (req, res) => {
+router.get('/edit/:id', withAuth, (req, res) => {
     Post.findOne({
             where: {
                 id: req.params.id
@@ -78,7 +78,14 @@ router.put('/edit/:id', withAuth, (req, res) => {
         });
 })
 
-
+router.get('/new', withAuth, async (req,res) => {
+    try{
+        res.render('new-post')
+    }
+    catch(err){
+        res.status(500).json(err)
+    }
+})
 
 
 module.exports = router;

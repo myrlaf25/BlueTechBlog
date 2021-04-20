@@ -35,7 +35,7 @@ router.get('/', async (req, res) => {
 
 
 
-router.get('/post/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const postData = await Post.findOne({
             where: {
@@ -60,7 +60,7 @@ router.get('/post/:id', async (req, res) => {
             }]
         });
         const post = postData.get({ plain: true });
-        res.render('post-info', {
+        res.render('partials/single-post', {
             ...post 
             
         })
@@ -79,14 +79,15 @@ router.post('/', withAuth, async (req, res) => {
             content: req.body.content,
             user_id: req.session.user_id
         })
-        res.json(newPostData);
+        res.json(newPostData)
+        res.render('dashboard')
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
     }
 })
 
-router.put('/', withAuth, async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.update({
             title: req.body.title,

@@ -12,7 +12,7 @@ const newPostFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/dashboard/new');
+        document.location.replace('/dashboard');
       } else {
         alert('Failed to create post');
       }
@@ -20,7 +20,7 @@ const newPostFormHandler = async (event) => {
   };
   
   document
-    .getElementById('#new-post-form')
+    .getElementById('new-post-form')
     .addEventListener('submit', newPostFormHandler);
   
   

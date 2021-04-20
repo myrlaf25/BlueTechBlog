@@ -2,6 +2,8 @@
 
     {{#each posts as |post| }}
         {{> post-info post}}
+        {{> comments post.comments}}
+        
     {{/each}}
 
 </article>

@@ -33,20 +33,23 @@ router.get('/', async (req, res) => {
         res.status(500).json(err);
     }
 });
-router.get('/post/:id', async (req, res) => {
+router.get('/posts/:id', async (req, res) => {
     try {
-        const postData = await Post.findByPk({
+        const postData = await Post.findByPk(req.params.id, {
             attributes: ['title', 'content', 'created_at'],
-            include: [{ model:User, 
-            attributes: ['username']}], 
-            include:[{ model:Comment,
-                attributes: ['id', 'comment_text', 'created_at'], 
+            include: [{
+                model: User,
+                attributes: ['username']
+            }],
+            include: [{
+                model: Comment,
+                attributes: ['id', 'comment_text', 'created_at'],
             }]
         })
         const post = postData.get({ plain: true });
-        res.render('post-info', {
-            ...post, 
-            
+        res.render('partials/single-post', {
+            ...post,
+            // logged_in: req.session.logged_in
         })
         
     }
@@ -81,8 +84,17 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+router.get('/signup', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+    res.render('signup');
+});
 
-router.get('/posts-comments', (req, res) => {
+
+
+router.get('/post/:id', (req, res) => {
     Post.findOne({
         where: {
             id: req.params.id
@@ -100,6 +112,10 @@ router.get('/posts-comments', (req, res) => {
                 model: User,
                 attributes: ['username']
             }
+        },
+        {
+            model: User,
+            attributes: ['username']
         }
         ],
     })
@@ -110,7 +126,7 @@ router.get('/posts-comments', (req, res) => {
             }
             const post = dbPostData.get({ plain: true });
 
-            res.render('posts-comments', { post, loggedIn: req.session.loggedIn });
+            res.render('partials/single-post', { post, loggedIn: req.session.loggedIn });
         })
         .catch(err => {
             console.log(err);

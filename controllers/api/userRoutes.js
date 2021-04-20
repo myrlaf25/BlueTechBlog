@@ -2,20 +2,52 @@ const router = require('express').Router();
 const { User } = require('../../models');
 const withAuth = require('../../utils/auth')
 // //GET /api/users
-// router.get('/', async (req, res) => {
-//     try {
-//         const userData = await User.findAll({
-//             attributes: { exclude: ['[password'] }
-//         });
+router.get('/', async (req, res) => {
+    try {
+        const userData = await User.findAll({
+            attributes: { exclude: ['[password'] }
+        });
 
-//         res.json(userData);
+        res.json(userData);
 
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 //GET /api/users/1
+router.get('/:id', async (req,res)=> {
+    try{
+        const data = await User.findOne({
+        attributes: { exclude: ['password']},
+        where: {
+          id: req.params.id
+        },
+        include: [
+            {
+              model: Post,
+              attributes: ['id', 'title', 'content', 'created_at']
+            },
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'created_at'],
+                include: {
+                  model: Post,
+                  attributes: ['title']
+                }
+            }
+          ]
 
+    })
+    if (!data){
+        res.status(404).json({message: 'No user found.'})
+        return;
+    }
+    res.json(data);
+    }catch (err){
+        console.log(err);
+        res.status(500).json(err)
+    }
+})
 
 
 
