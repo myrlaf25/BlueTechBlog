@@ -54,7 +54,7 @@ router.get('/:id', async (req,res)=> {
 
 
 router.post('/signup', async (req, res) => {
-
+    try{
     const userData = await User.create(req.body);
     //add name, email and password to/from model user
     req.session.save(() => {
@@ -69,8 +69,12 @@ router.post('/signup', async (req, res) => {
             },
             message: 'You are now logged in!',
         });
-
+    
     });
+} catch(err){
+    console.log(err)
+    res.status(500).json(err)
+}
 });
 //POST /api/users
 // router.post('/', withAuth, async (req, res) => {
@@ -133,7 +137,7 @@ router.post('/logout', (req, res) => {
         });
     } else {
         res.status(404).end();
-    }
+    } 
 });
 router.put('/:id', withAuth, async (req, res) => {
     try{
