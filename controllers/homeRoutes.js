@@ -54,6 +54,7 @@ router.get('/posts/:id', async (req, res) => {
         
     }
     catch (err) {
+        console.log(err)
         res.status(500).json(err);
     }
 });
@@ -72,6 +73,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
             loggedIn: true
         });
     } catch (err) {
+        console.log(err)
         res.status(500).json(err);
     }
 });

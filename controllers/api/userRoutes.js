@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
         res.json(userData);
 
     } catch (err) {
+        console.log(err)
         res.status(500).json(err);
     }
 });
@@ -126,6 +127,7 @@ router.post('/login', async (req, res) => {
     
   
     } catch (err) {
+        console.log(err)
       res.status(400).json(err);
     }
   });
@@ -145,6 +147,7 @@ router.put('/:id', withAuth, async (req, res) => {
         { where: { id: req.params.id } })
     res.json(userData)
     } catch (err) {
+        console.log(err)
         res.status(400).json(err);
     }
 
@@ -157,6 +160,7 @@ router.delete('/:id', withAuth, async (req, res) => {
             res.status(404).json({ message: 'No user found with this id' });}
     res.json(userData)
         } catch (err) {
+            console.log(err)
             res.status(400).json(err);
         }
 })
