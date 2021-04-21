@@ -98,7 +98,7 @@ router.get('/login', (req, res) => {
 
 // 
 
-app.get('/signup', function(req,res){
+router.get('/signup', function(req,res){
     res.send('signup')
 })
 
