@@ -1,14 +1,8 @@
- {{#if loggedIn}}
-                     <button class="no-button" id="logout">Logout</button>
-                    {{else}}
-                    <a class="link" href="/login">Login</a>
-                    <a class="link" href="/signup">SignUp</a>
-                    {{/if}}
 
 <div class="card">
     <div class="card-header">
        <h4>{{title}}</h4>
-        <p class="card-body">{{content}}</p>
+        <p style="color:rgb(21, 21, 116);" class="card-body">{{content}}</p>
         <p>Posted by {{user.username}} on {{format_date created_at}}</p>
     </div>
         
