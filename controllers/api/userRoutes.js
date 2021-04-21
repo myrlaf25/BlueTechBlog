@@ -62,32 +62,22 @@ router.post('/signup', async (req, res) => {
         req.session.user_id = userData.id;
         req.session.loggedIn = true;
 
-        res.json({
-            user: {
-                username: userData.get('username'),
-                email: userData.get('email'),
-                password: userData.get('password')
-            },
-            message: 'You are now logged in!',
-        });
-    
+        res.status(200).json(userData);
     });
-} catch(err){
-   
-    res.status(500).json(err)
-}
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
-
 //login
 router.post('/login', async (req, res) => {
     try {
       const userData = await User.findOne({ 
+        
           where: { 
-                username: req.body.username,
-                email:req.body.email, 
-                password: req.body.password } 
-            });
-  
+                email: req.body.email, 
+               } 
+    });
+    
       if (!userData) {
         res.status(400).json({ message: 'Incorrect username, please try again' });
         return;
@@ -101,8 +91,8 @@ router.post('/login', async (req, res) => {
       }
   
       req.session.save(() => {
+
         req.session.user_id = userData.id;
-        res.session.username=userData.username;
         req.session.loggedIn = true;
         
         res.json({ user: userData, message: 'You are now logged in!' });
@@ -147,7 +137,5 @@ router.delete('/:id', withAuth, async (req, res) => {
             res.status(400).json(err);
         }
 })
-
-
 
 module.exports = router;
