@@ -99,7 +99,8 @@ router.get('/login', (req, res) => {
 // 
 
 router.get('/signup', function(req,res){
-    res.send('signup')
+    // res.send('signup')
+    res.render('signup')
 })
 
 module.exports = router;
