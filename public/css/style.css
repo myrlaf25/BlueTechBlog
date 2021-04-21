@@ -27,14 +27,12 @@
                       background-position: scroll;
                       background-repeat: no-repeat;
                       background-size: 100% 100%;
-                      /* background-color: var(--primary); */
                       margin: 25px;
                       margin-left: 75px;
                       margin-right: 75px;
                       padding: 10px;
                       font-family:'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
                       color: var(--dark);
-                      /* line-height: 1.5; */
                       font-size: 20px;
                   }
                   
