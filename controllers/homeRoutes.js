@@ -87,20 +87,20 @@ router.get('/login', (req, res) => {
     }
 });
 
-// router.get('/signup', (req, res) => {
-//     if (req.session.loggedIn) {
-//         res.redirect('/dashboard');
-//         return;
-//     }
-//     res.render('signup');
-//     return;
-// });
+router.get('/signup', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+    res.render('signup');
+   
+});
 
 // 
 
-router.get('/signup', function(req,res){
-    // res.send('signup')
-    res.render('signup')
-})
+// router.get('/signup', function(req,res){
+//     // res.send('signup')
+//     res.render('signup')
+// })
 
 module.exports = router;
