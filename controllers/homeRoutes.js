@@ -2,6 +2,7 @@ const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
 const withAuth = require('.././utils/auth');
 const router = require('express').Router();
+const path = require('path');
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -87,7 +88,7 @@ router.get('/login', (req, res) => {
     }
 });
 
-router.get('/js/signup.js', (req, res) => {
+router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
