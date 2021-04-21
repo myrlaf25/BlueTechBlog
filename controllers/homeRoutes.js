@@ -96,49 +96,10 @@ router.get('/login', (req, res) => {
 //     return;
 // });
 
-router.get('/signup', (req, res) => {
-    res.render('signup');
-});
+// 
 
-
-// router.get('/posts/:id', withAuth (req, res) => {
-//     Post.findOne({
-//         where: {
-//             id: req.params.id
-//         },
-//         attributes: [
-//             'id',
-//             'content',
-//             'title',
-//             'created_at'
-//         ],
-//         include: [{
-//             model: Comment,
-//             attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-//             include: {
-//                 model: User,
-//                 attributes: ['username']
-//             }
-//         },
-//         {
-//             model: User,
-//             attributes: ['username']
-//         }
-//         ],
-//     })
-//         .then(dbPostData => {
-//             if (!dbPostData) {
-//                 res.status(404).json({ message: 'No post found with this id' });
-//                 return;
-//             }
-//             const post = dbPostData.get({ plain: true });
-
-//             res.render('partials/single-post', { post, loggedIn: req.session.loggedIn });
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             res.status(500).json(err);
-//         }),
-// });
+app.get('/signup', function(req,res){
+    res.send('signup')
+})
 
 module.exports = router;
