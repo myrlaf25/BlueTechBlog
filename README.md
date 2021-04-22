@@ -1,59 +1,78 @@
 # BlueTechBlog
 
-GIVEN a CMS-style blog site
-WHEN I visit the site for the first time
-THEN I am presented with the homepage, which includes existing blog posts 
-if any have been posted; navigation links for the homepage and the dashboard; and the option to log in
+## Link to deployed website:
+https://bluetechblog.herokuapp.com/
 
+## Link to repo:
+https://github.com/myrlaf25/BlueTechBlog
 
-WHEN I click on the homepage option
-THEN I am taken to the homepage
-WHEN I click on any other links in the navigation
-THEN I am prompted to either sign up or sign in
+<img src="https://img.shields.io/badge/License-ISC-blue.svg"></img>
 
+## Table of Contents
 
-WHEN I choose to sign up
-THEN I am prompted to create a username and password
-WHEN I click on the sign-up button
-THEN my user credentials are saved and I am logged into the site
+-[Description](#description)
+-[Installation](#installation)
+-[Usage](#usage)
+-[Credits](#credits)
+-[License](#license)
+-[Tests](#tests)
 
+# Description
+This is a CMS-style blog site similar to Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well. This application was built from scratch and has been deployed in Heroku. The app follows the Model-View-Controller (MVC) paradigm, using Handlebars.js, Sequelize, and express-session npm package for authentication. 
 
-WHEN I revisit the site at a later time and choose to sign in
-THEN I am prompted to enter my username and password
-WHEN I am signed in to the site
-THEN I see navigation links for the homepage, the dashboard, and the option to log out
+<img src="public/bluetechblog.png" alt="photo holder" width='50%' height='50%'></img>
 
+# User Story
+* AS A developer who writes about tech, I WANT a CMS-style blog site SO THAT I can publish articles, blog posts, and my thoughts and opinions.
 
-WHEN I click on the homepage option in the navigation
-THEN I am taken to the homepage and presented with existing blog posts that include the post title and the date created
+## Business Context
+The user will be able to read all posts and comments on the main homepage. The user may only post or comment if they signed up by creating a user account. Once the user is logged in, the user may create posts, leave comments on other posts, update/delete their posts. 
 
+## Installation
+The following are a list of packages the user will need to install to be able to run the application in localhost:
 
-WHEN I click on an existing blog post
-THEN I am presented with the post title, contents, post creator’s username, and date created for that post and have the option to leave a comment
+<img src="public/list-dependencies.png" alt="photo holder" width='40%' height='40%'></img>
 
+# Usage
+When the user visits the site for the first time and presented with the homepage, which includes existing blogs, the user will also have navigation links to home, dashboard, option to login or signup. 
 
-WHEN I enter a comment and click on the submit button while signed in
-THEN the comment is saved and the post is updated to display the comment, the comment creator’s username, and the date created
+When the user clicks on the Home link, the user will be presented with the homepage. If the user clicks on any other links, the user will be redirected to login page. On the login page, if the user does not have an account, it gives the user the option to signup. 
 
+When the user is presented with the signup page, the user must input the username, email, and password. The user credentials will be saved and is logged in. 
 
-WHEN I click on the dashboard option in the navigation
-THEN I am taken to the dashboard and presented with any blog posts I have already created and the option to add a new blog post
+When the user visits the page at a later time and chooses to sign in, the user will have to enter the username, email, and password to sign in. The user will then be able to navigate the links for home, dashboard, and logout. 
 
+<img src="public/bluetechblog-dashboard.png" alt="photo holder" width='50%' height='50%'></img>
 
-WHEN I click on the button to add a new blog post
-THEN I am prompted to enter both a title and contents for my blog post
+When the user is logged in and clicks on the existing blog post which includes the title, content, creator's username, and date created, then the user is redirected to that post page and has the option to leave a comment. 
 
+<img src="public/bluetechblog-comment.png" alt="photo holder" width='50%' height='50%'></img>
 
-WHEN I click on the button to create a new blog post
-THEN the title and contents of my post are saved and I am taken back to an updated dashboard with my new blog post
+When the user clicks submit comment, the comment gets added at the bottom of that post and will display on the homepage with the comment, creator's username, and the date created. 
 
+When the user is logged in and clicks on the dashboard link, the user is redirected to the dashboard and presented with any blog posts the user has created and the option to add a new blog post. 
 
-WHEN I click on one of my existing posts in the dashboard
-THEN I am able to delete or update my post and taken back to an updated dashboard
+When the user is logged in and clicks on the New Post option, the user then is prompted to enter both a title and contents for the blog post.
 
+When the user is logged in and after creating a New Post, the post is saved and the user is redirected to the updated dashboard containing the new blog post. 
 
-WHEN I click on the logout option in the navigation
-THEN I am signed out of the site
+When the user is logged in and clicks on any existing posts on the dashboard, the user may update/delete such post. 
 
-WHEN I am idle on the page for more than a set time
-THEN I am automatically signed out of the site 
+<img src="public/bluetechblog-edit.png" alt="photo holder" width='50%' height='50%'></img>
+
+The user may click on the logout option in the navigation to sign out of the site. 
+
+## Credits
+I worked on this site mainly alone. I received assitance from a tutor, a teacher's assistant, and the Bootcamp Instructor. The most challenging part was deploying to Heroku. 
+
+## License
+For more information on the License, please click on the link: 
+-[License] https://opensource.org/licenses/ISC
+
+## Tests
+Once the user enters the command in the terminal of nodemon server or node server.js, the user may utilize Insomnia Core to check the functionality. The API routes: This will provide CRUD functions that depending on what the user wants to do will GET, POST, PUT, or DELETE. 
+
+-[GitHub] {https://github.com/myrlaf25}
+
+##Questions
+To contact me directly, please email me at: myrlaf25@gmail.com.
