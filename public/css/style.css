@@ -1,8 +1,8 @@
                    :root {
                       --primary: #ccdad1;
                       --secondary: #f7ec5e;
-                      --tertiary: #f86b19;
-                      --light-dark: #483bff;
+                      --tertiary: #f8ac81;
+                      --light-dark: #7970fc;
                       --dark: #200455;
                       --border-radius: .3rem;
                   }
@@ -34,6 +34,7 @@
                       font-family:'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
                       color: var(--dark);
                       font-size: 20px;
+                      background-color: var(--dark);
                   }
                   
                   h1,
@@ -162,7 +163,7 @@
                   
                   .card {
                       margin: 0 0 20px 0;
-                      border: 2px solid var(--secondary);
+                      border: 3px solid var(--dark);
                       border-radius: var(--border-radius);
                   }
                   
